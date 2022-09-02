@@ -21,22 +21,21 @@
     <!-- My stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body class="bg-dark text-white">
     <nav class="navbar navbar-dark bg-dark p-3">
       <h5 class="text-white">
         BolsApp
-        <span class="fa-layers fa-fw">
-          <i class="fa-solid fa-bag-shopping"></i>
-          <span
-            class="fa-layers-counter"
-            id="itemCount"
-            style="background: Tomato"
-          ></span>
-        </span>
+        <i class="fa-solid fa-bag-shopping"></i>
       </h5>
     </nav>
-    <div class="container p-3 col-6 text-center">
-      <div id="popupAgregar" class="d-none">
+
+    <div class="container-fluid p-3 row">
+      <div id="addPopup" class="col-md-6">
+        <button class="btn btn-primary float-end" id="closeBtn" name="closeBtn">
+          X
+        </button>
+        <h1 class="text-center">Elegir Items</h1>
+
         <form>
           <div class="form-floating">
             <input
@@ -47,14 +46,13 @@
               required="required"
               class="form-control"
             />
-            <label for="item">Item</label>
+            <label for="itemName">Item</label>
           </div>
-
           <br />
           <div class="form-floating">
             <select
-              id="categoria"
-              name="categoria"
+              id="category"
+              name="category"
               required="required"
               class="form-select"
             >
@@ -66,28 +64,28 @@
               <option value="bebidas">🍾 Bebidas</option>
               <option value="higiene">🧼 Higiene Personal</option>
             </select>
-            <label for="categoria">Elige una categoria</label>
+            <label for="category">Elige una categoria</label>
           </div>
           <br />
           <div class="form-floating">
             <textarea
-              id="descripcion"
-              name="descripcion"
+              id="description"
+              name="description"
               placeholder="Describe"
-              cols="40"
-              rows="3"
+              cols="30"
+              rows="5"
               aria-describedby="textareaHelpBlock"
               class="form-control"
             ></textarea>
-            <label for="descripcion">Describe</label>
+            <label for="description">Describe</label>
           </div>
           <br />
-          <div class="form-group text-center">
+          <div class="form-group float-end">
             <button
-              name="submit"
+              name="addBtn"
+              id="addBtn"
               type="submit"
               class="btn btn-primary"
-              id="btnAgregar"
             >
               Agregar
             </button>
@@ -95,17 +93,23 @@
         </form>
       </div>
 
-      <div id="listaVacia" class="">
-        <h1>La lista está vacía</h1>
-        <i class="fa-regular fa-face-frown fa-10x"></i>
+      <div id="emptyList" class="col-md-6 d-none">
+        <h1 class="text-center">La lista está vacía</h1>
+        <i class="fa-regular fa-face-frown fa-10x text-center"></i>
       </div>
 
-      <div id="lista" class="d-none">
-        <h1>Listado de ítems</h1>
+      <div id="list" class="col-md-6">
+        <h1 class="text-center">Listado de ítems</h1>
       </div>
     </div>
 
-    <button class="btn btn-primary m-3" id="fabBtn" name="btn=" btn>+</button>
+    <button
+      class="btn btn-primary m-3 position-absolute bottom-0 end-0 rounded-circle"
+      id="fabBtn"
+      name="fabBtn"
+    >
+      +
+    </button>
 
     <!-- Bootstrap script -->
     <script
