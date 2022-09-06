@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BolsApp</title>
-
     <!-- Bootstrap 5.2 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
@@ -20,6 +19,8 @@
     ></script>
     <!-- My stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/ico.png" type="image/x-icon" />
   </head>
   <body class="bg-dark">
     <nav class="navbar navbar-dark bg-dark p-3">
@@ -67,7 +68,7 @@
               <option value="bebidas">🍾 Bebidas</option>
               <option value="higiene">🧼 Higiene Personal</option>
             </select>
-            <label for="category">Elige una categoria</label>
+            <label for="category">Elige una categoría</label>
           </div>
           <br />
           <div class="form-floating">
@@ -79,7 +80,7 @@
               class="form-control"
               style="height: 100px"
             ></textarea>
-            <label for="description">Describe</label>
+            <label for="description">Describe el ítem</label>
           </div>
           <br />
           <div class="form-group float-end">
@@ -95,13 +96,29 @@
         </form>
       </div>
 
-      <div id="emptyList" class="col-md-4 flex-grow-1 text-center">
-        <h1 class="text-white">La lista está vacía</h1>
-        <i class="fa-regular fa-face-frown fa-10x text-white"></i>
-      </div>
-
-      <div id="list" class="col-md-4 flex-grow-1 text-center d-none">
+      <div id="itemList" class="col-md-4 flex-grow-1">
         <h1 class="text-white">Listado de ítems</h1>
+        <table class="table table-dark table-sm">
+          <caption>
+            No tienes productos en la lista
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Item</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Descripción</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr>
+              <th scope="row">1</th>
+              <td>item1</td>
+              <td>cat1</td>
+              <td>desc1</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -110,7 +127,7 @@
       id="fabBtn"
       name="fabBtn"
     >
-      <i class="fa-solid fa-plus"></i>
+      <i class="fa-solid fa-plus fa-xl"></i>
     </button>
 
     <!-- Bootstrap script -->
