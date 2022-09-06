@@ -1,6 +1,11 @@
+//Botones
 const fabBtn = document.getElementById("fabBtn");
 const closeBtn = document.getElementById("closeBtn");
+
+//Sections
 const addPopup = document.getElementById("addPopup");
+const emptyList = document.getElementById("emptyList");
+const list = document.getElementById("list");
 
 //Con la siguiente función hago la mágia de mostrar u ocultar lo que quiero segun como se visualice la app
 function magia(x) {
