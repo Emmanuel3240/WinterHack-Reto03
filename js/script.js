@@ -44,13 +44,13 @@ const addItem = (item, category, description) => {
   <td>${category}</td>
   <td>${description}</td>
   <td><button
-  class="btn btn-secondary"
+  class="btn btn-secondary btn-sm"
   id="detailBtn"
   name="detailBtn"
   data-bs-toggle="modal"
   data-bs-target="#detailModal"
   onClick="detailBtn('${item}', '${category}', '${description}')">
-<i class="fa-solid fa-chevron-right"></i>
+<i class="fa-solid fa-chevron-right fa-sm"></i>
 </button></td>
 </tr>`;
   table.innerHTML += itemFull;
