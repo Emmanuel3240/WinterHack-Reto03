@@ -17,8 +17,6 @@
       src="https://kit.fontawesome.com/cfdfb90384.js"
       crossorigin="anonymous"
     ></script>
-    <!-- My stylesheet -->
-    <link rel="stylesheet" href="css/style.css" />
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/ico.png" type="image/x-icon" />
   </head>
@@ -40,7 +38,7 @@
         ></button>
         <h1 class="text-center text-white">Elegir Items</h1>
 
-        <form>
+        <form id="addForm">
           <div class="form-floating">
             <input
               id="itemName"
@@ -55,8 +53,8 @@
           <br />
           <div class="form-floating">
             <select
-              id="category"
-              name="category"
+              id="itemCategory"
+              name="itemCategory"
               required="required"
               class="form-select"
             >
@@ -68,19 +66,19 @@
               <option value="bebidas">🍾 Bebidas</option>
               <option value="higiene">🧼 Higiene Personal</option>
             </select>
-            <label for="category">Elige una categoría</label>
+            <label for="itemCategory">Elige una categoría</label>
           </div>
           <br />
           <div class="form-floating">
             <textarea
-              id="description"
-              name="description"
+              id="itemDescription"
+              name="itemDescription"
               placeholder="Describe"
               aria-describedby="textareaHelpBlock"
               class="form-control"
               style="height: 100px"
             ></textarea>
-            <label for="description">Describe el ítem</label>
+            <label for="itemDescription">Describe el ítem</label>
           </div>
           <br />
           <div class="form-group float-end">
@@ -95,40 +93,55 @@
           </div>
         </form>
       </div>
-
       <div id="itemList" class="col-md-4 flex-grow-1">
         <h1 class="text-white">Listado de ítems</h1>
         <table class="table table-dark table-sm">
-          <caption>
+          <caption id="msg">
             No tienes productos en la lista
           </caption>
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Item</th>
               <th scope="col">Categoría</th>
               <th scope="col">Descripción</th>
+              <th scope="col">Ver detalles</th>
             </tr>
           </thead>
-          <tbody class="table-group-divider">
-            <tr>
-              <th scope="row">1</th>
-              <td>item1</td>
-              <td>cat1</td>
-              <td>desc1</td>
-            </tr>
-          </tbody>
+          <tbody class="table-group-divider" id="itemListTable"></tbody>
         </table>
+        <button
+        class="btn btn-primary btn-lg m-3 position-absolute bottom-0 end-0 rounded-circle"
+        id="fabBtn"
+        name="fabBtn"
+      >
+        <i class="fa-solid fa-plus fa-xl"></i>
+      </button>
       </div>
+
+
     </div>
 
-    <button
-      class="btn btn-primary btn-lg m-3 position-absolute bottom-0 end-0 rounded-circle"
-      id="fabBtn"
-      name="fabBtn"
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="detailModal"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
     >
-      <i class="fa-solid fa-plus fa-xl"></i>
-    </button>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">
+              Detalle del ítem
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalBody"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Bootstrap script -->
     <script
