@@ -13,7 +13,7 @@ const addForm = document.getElementById("addForm");
 //Tabla
 const table = document.getElementById("itemListTable");
 
-//Con la siguiente función hago la mágia de mostrar u ocultar lo que quiero segun como se visualice la app
+//Con la siguiente función hago la mágia de mostrar u ocultar lo que quiero
 function magia(x) {
   if (laMagia.matches) {
     fabBtn.classList.remove("d-none");
@@ -26,6 +26,7 @@ function magia(x) {
   }
 }
 
+//Aplicando magia segun como se visualice la app
 var laMagia = window.matchMedia("(max-width: 768px)");
 magia(laMagia);
 laMagia.addListener(magia);
@@ -37,10 +38,11 @@ fabBtn.addEventListener("click", () => {
 });
 
 //Funciónn agregar Item
-const addItem = (item, category, description) => {
+const addItem = (cont, item, category, description) => {
   let itemFull = `
   <tr>
-  <td scope="row">${item}</td>
+  <td scope="row">${cont}</td>
+  <td>${item}</td>
   <td>${category}</td>
   <td>${description}</td>
   <td><button
@@ -57,6 +59,7 @@ const addItem = (item, category, description) => {
 };
 
 //Agregar items a la lista
+let counter = 0;
 addForm.addEventListener("submit", (e) => {
   e.preventDefault();
   let itemName = e.target.itemName.value;
@@ -64,8 +67,10 @@ addForm.addEventListener("submit", (e) => {
   let itemDescription = e.target.itemDescription.value;
 
   if (itemName && itemCategory && itemDescription) {
-    addItem(itemName, itemCategory, itemDescription);
+    counter++;
+    addItem(counter, itemName, itemCategory, itemDescription);
     itemlist.classList.remove("d-none");
+    magia(laMagia);
     addForm.reset();
     msg.innerHTML = "";
   } else {
