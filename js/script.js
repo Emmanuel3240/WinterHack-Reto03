@@ -6,6 +6,7 @@ const addBtn = document.getElementById("addBtn");
 //Sections
 const addPopup = document.getElementById("addPopup");
 const itemlist = document.getElementById("itemList");
+const emptyList = document.getElementById("emptyList");
 
 //formulario
 const addForm = document.getElementById("addForm");
@@ -35,16 +36,15 @@ laMagia.addListener(magia);
 fabBtn.addEventListener("click", () => {
   addPopup.classList.remove("d-none");
   itemlist.classList.add("d-none");
+  emptyList.classList.add("d-none");
 });
 
 //Funciónn agregar Item
-const addItem = (cont, item, category, description) => {
+const addItem = (item, category, description) => {
   let itemFull = `
   <tr>
-  <td scope="row">${cont}</td>
+  <td scope="row">${category}</td>
   <td>${item}</td>
-  <td>${category}</td>
-  <td>${description}</td>
   <td><button
   class="btn btn-secondary btn-sm"
   id="detailBtn"
@@ -68,27 +68,40 @@ addForm.addEventListener("submit", (e) => {
 
   if (itemName && itemCategory && itemDescription) {
     counter++;
-    addItem(counter, itemName, itemCategory, itemDescription);
-    itemlist.classList.remove("d-none");
-    magia(laMagia);
+    if (counter > 0) {
+      itemlist.classList.remove("d-none");
+      emptyList.classList.add("d-none");
+      magia(laMagia);
+    } else {
+      emptyList.classList.remove("d-none");
+    }
+    addItem(itemName, itemCategory, itemDescription);
     addForm.reset();
-    msg.innerHTML = "";
   } else {
-    alert("El formulario no está completo");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "El formulario está incompleto",
+    });
   }
 });
 
 //Cierra el popup y muestra la lista de Items
 closeBtn.addEventListener("click", () => {
   addPopup.classList.add("d-none");
-  itemlist.classList.remove("d-none");
+  if (counter > 0) {
+    itemlist.classList.remove("d-none");
+    emptyList.classList.add("d-none");
+  } else {
+    emptyList.classList.remove("d-none");
+  }
 });
 
 //Boton detalle
 const detailBtn = (item, category, description) => {
   let itemDetail = `
   <div class="card-fluid">
-<img src="img/${category}.png" class="card-img-top float-center" alt="${category}">
+<img src="img/${category}.png" class="card-img-top float-center">
 <div class="card-body">
   <h5 class="card-title">${item}</h5>
   <p class="card-text">${description}</p>

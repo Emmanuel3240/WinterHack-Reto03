@@ -36,7 +36,7 @@
           id="closeBtn"
           aria-label="Close"
         ></button>
-        <h1 class="text-center text-white">Elegir Items</h1>
+        <h3 class="text-center text-white">Elegir ítems</h3>
 
         <form id="addForm">
           <div class="form-floating">
@@ -58,13 +58,13 @@
               required="required"
               class="form-select"
             >
-              <option value="frutas">🍎 Frutas & Vegetales</option>
-              <option value="pan">🥖 Panificación</option>
-              <option value="lacteos">🧀 Lacteos</option>
-              <option value="carnes">🥩 Carnes & Pescados</option>
-              <option value="pastas">🍝 Pastas</option>
-              <option value="bebidas">🍾 Bebidas</option>
-              <option value="higiene">🧼 Higiene Personal</option>
+              <option value="🍎">🍎 Frutas & Vegetales</option>
+              <option value="🥖">🥖 Panificación</option>
+              <option value="🧀">🧀 Lacteos</option>
+              <option value="🥩">🥩 Carnes & Pescados</option>
+              <option value="🍝">🍝 Pastas</option>
+              <option value="🍾">🍾 Bebidas</option>
+              <option value="🧼">🧼 Higiene Personal</option>
             </select>
             <label for="itemCategory">Elige una categoría</label>
           </div>
@@ -76,6 +76,7 @@
               placeholder="Describe"
               aria-describedby="textareaHelpBlock"
               class="form-control"
+              required="required"
               style="height: 100px"
             ></textarea>
             <label for="itemDescription">Describe el ítem</label>
@@ -93,56 +94,63 @@
           </div>
         </form>
       </div>
-      <div id="itemList" class="col-md-4 flex-grow-1">
-        <h1 class="text-white">Listado de ítems</h1>
+
+      <div id="itemList" class="col-md-4 flex-grow-1 text-center d-none">
+        <h3 class="text-white">Listado de ítems</h3>
         <table class="table table-dark table-sm">
-          <caption id="msg">
-            No tienes productos en la lista
-          </caption>
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Item</th>
               <th scope="col">Categoría</th>
-              <th scope="col">Descripción</th>
+              <th scope="col">Item</th>
               <th scope="col">Ver detalles</th>
             </tr>
           </thead>
           <tbody class="table-group-divider" id="itemListTable"></tbody>
         </table>
-        <button
-        class="btn btn-primary btn-lg m-3 position-absolute bottom-0 end-0 rounded-circle"
-        id="fabBtn"
-        name="fabBtn"
-      >
-        <i class="fa-solid fa-plus fa-lg"></i>
-      </button>
+      </div>
+
+      <div id="emptyList" class="col-md-4 flex-grow-1 text-center">
+        <h3 class="text-white">
+          La lista está vacía 😿</i>
+        </h3>
+        <h5 class="text-white">Agrega productos a tu lista</h5>
       </div>
 
 
-    </div>
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="detailModal"
-      tabindex="-1"
-      aria-labelledby="staticBackdropLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">
-              Detalle del ítem
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body" id="modalBody"></div>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="detailModal"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">
+                Detalle del ítem
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
           </div>
         </div>
       </div>
+
     </div>
+    <button
+    class="btn btn-primary btn-lg m-3 position-absolute bottom-0 end-0 rounded-circle"
+    id="fabBtn"
+    name="fabBtn"
+  >
+    <i class="fa-solid fa-plus fa-lg"></i>
+  </button>
 
     <!-- Bootstrap script -->
     <script
@@ -152,5 +160,8 @@
     ></script>
     <!-- My script -->
     <script src="js/script.js"></script>
+    <!-- SweetAlert script -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   </body>
 </html>
