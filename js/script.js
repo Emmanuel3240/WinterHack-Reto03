@@ -14,29 +14,43 @@ const addForm = document.getElementById("addForm");
 //Tabla
 const table = document.getElementById("itemListTable");
 
-//Con la siguiente función hago la mágia de mostrar u ocultar lo que quiero
-function magia(x) {
-  if (laMagia.matches) {
-    fabBtn.classList.remove("d-none");
-    closeBtn.classList.remove("d-none");
-    addPopup.classList.add("d-none");
-  } else {
-    fabBtn.classList.add("d-none");
-    closeBtn.classList.add("d-none");
-    addPopup.classList.remove("d-none");
-  }
-}
-
-//Aplicando magia segun como se visualice la app
-var laMagia = window.matchMedia("(max-width: 768px)");
-magia(laMagia);
-laMagia.addListener(magia);
-
 //Habilitar el popup para agregar Items
 fabBtn.addEventListener("click", () => {
   addPopup.classList.remove("d-none");
+  fabBtn.classList.add("d-none");
   itemlist.classList.add("d-none");
   emptyList.classList.add("d-none");
+});
+
+//Agregar items a la lista
+let counter = 0;
+addForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let itemName = e.target.itemName.value;
+  let itemCategory = e.target.itemCategory.value;
+  let itemDescription = e.target.itemDescription.value;
+
+  if (itemName && itemCategory && itemDescription) {
+    counter++;
+    addPopup.classList.add("d-none");
+    itemlist.classList.remove("d-none");
+    fabBtn.classList.remove("d-none");
+    addItem(itemName, itemCategory, itemDescription);
+    addForm.reset();
+  }
+});
+
+//Cierra el popup y muestra la lista de Items
+closeBtn.addEventListener("click", () => {
+  addPopup.classList.add("d-none");
+  if (counter > 0) {
+    itemlist.classList.remove("d-none");
+    emptyList.classList.add("d-none");
+    fabBtn.classList.remove("d-none");
+  } else {
+    emptyList.classList.remove("d-none");
+    fabBtn.classList.remove("d-none");
+  }
 });
 
 //Funciónn agregar Item
@@ -57,45 +71,6 @@ const addItem = (item, category, description) => {
 </tr>`;
   table.innerHTML += itemFull;
 };
-
-//Agregar items a la lista
-let counter = 0;
-addForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let itemName = e.target.itemName.value;
-  let itemCategory = e.target.itemCategory.value;
-  let itemDescription = e.target.itemDescription.value;
-
-  if (itemName && itemCategory && itemDescription) {
-    counter++;
-    if (counter > 0) {
-      itemlist.classList.remove("d-none");
-      emptyList.classList.add("d-none");
-      magia(laMagia);
-    } else {
-      emptyList.classList.remove("d-none");
-    }
-    addItem(itemName, itemCategory, itemDescription);
-    addForm.reset();
-  } else {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "El formulario está incompleto",
-    });
-  }
-});
-
-//Cierra el popup y muestra la lista de Items
-closeBtn.addEventListener("click", () => {
-  addPopup.classList.add("d-none");
-  if (counter > 0) {
-    itemlist.classList.remove("d-none");
-    emptyList.classList.add("d-none");
-  } else {
-    emptyList.classList.remove("d-none");
-  }
-});
 
 //Boton detalle
 const detailBtn = (item, category, description) => {

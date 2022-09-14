@@ -29,10 +29,10 @@
     </nav>
 
     <div class="container-fluid p-3 row">
-      <div id="addPopup" class="col-md-4">
+      <div id="addPopup" class="col-md-4 d-none d-md-block">
         <button
           type="button"
-          class="btn-close btn-close-white float-end d-none"
+          class="btn-close btn-close-white float-end d-block d-md-none"
           id="closeBtn"
           aria-label="Close"
         ></button>
@@ -145,7 +145,7 @@
 
     </div>
     <button
-    class="btn btn-primary btn-lg m-3 position-absolute bottom-0 end-0 rounded-circle"
+    class="btn btn-primary btn-lg m-3 position-absolute bottom-0 end-0 rounded-circle d-block d-md-none"
     id="fabBtn"
     name="fabBtn"
   >
@@ -160,8 +160,6 @@
     ></script>
     <!-- My script -->
     <script src="js/script.js"></script>
-    <!-- SweetAlert script -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   </body>
 </html>
